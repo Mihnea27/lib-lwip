@@ -285,8 +285,8 @@ void sys_free(void *ptr);
  * this at the very last point in this configuration file.
  */
 #ifndef PBUF_POOL_SIZE
-#include <uk/essentials.h> /* MAX */
-#define PBUF_POOL_SIZE MAX(((TCP_WND + TCP_MSS - 1) / TCP_MSS), 2 * IP_REASS_MAX_PBUFS)
+#define MAX_LWIP(a, b) ((a) > (b) ? (a) : (b))
+#define PBUF_POOL_SIZE MAX_LWIP(((TCP_WND + TCP_MSS - 1) / TCP_MSS), 2 * IP_REASS_MAX_PBUFS)
 #endif
 #ifndef PBUF_POOL_BUFSIZE
 /* smallest PBUF_POOL_BUFSIZE which satisfies TCP_WND < PBUF_POOL_SIZE * (PBUF_POOL_BUFSIZE - protocol headers) */
